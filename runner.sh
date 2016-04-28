@@ -12,6 +12,12 @@ if [ ! -d "/var/log/vpnserver/server_log" ]; then
   mkdir -p /var/log/vpnserver/server_log
 fi
 
+if [ ! -d "/usr/local/vpnserver/config" ]; then
+  mkdir -p /usr/local/vpnserver/config
+  mv /usr/local/vpnserver/vpn_server.conf /usr/local/vpnserver/config/
+  ln -s /usr/local/vpnserver/config/vpn_server.conf /usr/local/vpnserver/vpn_server.conf
+fi
+
 ln -s /var/log/vpnserver/*_log /usr/local/vpnserver/
 
 exec /usr/local/vpnserver/vpnserver execsvc
